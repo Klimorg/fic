@@ -1,0 +1,7 @@
+Dockerfile
+Dockerfile.dev
+
+.vscode
+.pytest*
+.mypy*
+.github
