@@ -24,3 +24,13 @@ streamlit run src/ui.py
 exit
 streamlit run src/ui.py 
 exit
+streamlit run src/ui.py 
+pip install tensorflow
+streamlit run src/ui.py 
+pip install cleverhans
+pip freeze | grep clever
+pip freeze | grep omega
+pip install omegaconf
+pip freeze | grep omega
+streamlit run src/ui.py 
+exit
