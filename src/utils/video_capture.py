@@ -30,7 +30,8 @@ def capture():
     ctx = webrtc_streamer(key="snapshot", video_processor_factory=VideoTransformer)
 
     if ctx.video_transformer:
-        if st.sidebar.button("Prenez une photo"):
+        st.sidebar.title("Capture de photo")
+        if st.sidebar.button("Lancer", key="video_capture"):
             with ctx.video_transformer.frame_lock:
                 in_image = ctx.video_transformer.in_image
 

@@ -7,7 +7,7 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt install python3 python3-dev python3-pip libgl1-mesa-glx libglib2.0-0 -y
 
 # set username/id to be non root user and get same rights as in my ubuntu
-ARG USERNAME=lambda
+ARG USERNAME=lambdauser
 ARG USER_UID=1000
 ARG USER_GID=1000
 
@@ -21,6 +21,7 @@ USER $USERNAME
 
 COPY requirements.txt .
 COPY src/ src/
+COPY datas/ datas/
 
 # set path for python libs
 ENV PATH "$PATH:/home/$USERNAME/.local/bin"

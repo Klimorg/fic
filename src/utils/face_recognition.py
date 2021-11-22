@@ -1,10 +1,10 @@
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from omegaconf import OmegaConf
+import streamlit as st
 
 config = OmegaConf.load("src/config.yaml")
 
-model = load_model(config.model_address)
 
 
 def get_submodel(model, layername, freezed=True):
@@ -29,7 +29,17 @@ def get_submodel(model, layername, freezed=True):
 
     return submodel
 
-def classify(img):
+
+@st.cache(allow_output_mutation=True)
+def get_models():
+
+    model = load_model(config.model_address)
+    logit_model = get_submodel(model, 'logits')
+    embd_model = get_submodel(model, 'Embedding_3')
+
+    return model, logit_model, embd_model
+
+def classify(model, img):
 
     img = tf.reshape(img, (-1, 224, 224, 3))
 
