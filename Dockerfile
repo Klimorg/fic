@@ -2,11 +2,11 @@ FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
-WORKDIR /home/
 RUN apt-get update && apt-get upgrade -y
 RUN apt install python3 python3-dev python3-pip libgl1-mesa-glx libglib2.0-0 -y
 
 # set username/id to be non root user and get same rights as in my ubuntu
+# WORKDIR /home/
 ARG USERNAME=lambdauser
 ARG USER_UID=1000
 ARG USER_GID=1000
@@ -20,10 +20,17 @@ USER $USERNAME
 # RUN /usr/bin/python -m pip install --upgrade pip
 
 COPY requirements.txt .
-COPY src/ src/
-COPY datas/ datas/
 
 # set path for python libs
 ENV PATH "$PATH:/home/$USERNAME/.local/bin"
-
 RUN /bin/bash -c "pip3 install -r requirements.txt --no-cache"
+
+WORKDIR /home/$USERNAME
+
+COPY src/ src/
+RUN chown -R lambdauser:lambdauser src/
+RUN chmod 755 SRC/
+
+COPY datas/ datas/
+RUN chmod 755 datas/
+

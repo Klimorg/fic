@@ -29,6 +29,6 @@ def extract_face(filename, required_size=(224, 224)):
 
     align_img = np.uint8(face_array)
     align_img = Image.fromarray(align_img)
-    align_img.save("src/aligned_frames/test.jpg")
+    # align_img.save("src/aligned_frames/test.jpg")
 
     return face_array
