@@ -1,6 +1,6 @@
 streamlit==1.2.0
 streamlit-webrtc==0.31.2
-tensorflow==2.2.0
+tensorflow==2.8.0
 mtcnn==0.1.1
 cleverhans==3.0.0
 omegaconf==2.1.1
